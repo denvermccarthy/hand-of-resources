@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const { harryPotterObject } = require('.././data/booksData');
 
 describe('testing for /book route', () => {
   beforeEach(() => {
@@ -12,11 +13,14 @@ describe('testing for /book route', () => {
     expect(req.status).toEqual(200);
     expect(req.body.length).toEqual(5);
     const harryPotterBook = req.body.find((book) => book.id === '1');
-    expect(harryPotterBook).toMatchObject({
-      id: '1',
-      title: 'Harry Potter and the Philosophers Stone',
-      released: 1997,
-    });
+    expect(harryPotterBook).toMatchObject(harryPotterObject);
+  });
+  it('A GET request to /books/1 should return a single book with an id of 1', async () => {
+    const req = await request(app).get('/books/1');
+    console.log('req.body', req.body);
+    expect(req.status).toEqual(200);
+    expect(req.body).toMatchObject(harryPotterObject);
+    expect(req.body.id).toEqual('1');
   });
   afterAll(() => {
     pool.end();

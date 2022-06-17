@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AnyAPI</title>
+  </head>
+  <body>
+    <header>
+      <h1>books Endpoints</h1>
+    </header>
+    <main>
+      This API uses a list of books signs as its resource. The routes are as
+      follows:
+      <table>
+        <thead>
+          <tr>
+            <th>Route</th>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><pre>/books</pre></td>
+            <td>GET</td>
+            <td>Gets a list of books signs and ids</td>
+            <td>
+              <a href="/books" target="_blank">List books</a>
+            </td>
+          </tr>
+          <tr>
+            <td><pre>/books/:id</pre></td>
+            <td>GET</td>
+            <td>
+              Returns the detail about the books sign matching the id in the
+              parameter
+            </td>
+            <td>
+              <a href="/books/1" target="_blank" class="text-blue-700"
+                >Get books 1</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

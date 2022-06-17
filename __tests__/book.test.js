@@ -27,9 +27,13 @@ describe('testing for /book route', () => {
       released: 1998,
     };
     const req = await request(app).post('/books').send(sentBook);
-    console.log('req.body', req.body);
     expect(req.body.title).toEqual(sentBook.title);
     expect(req.body.released).toEqual(sentBook.released);
+  });
+  it('A PUT request to /books/2 should update the object in the database and return the row', async () => {
+    const req = await request(app).put('/books/2').send({ released: 1990 });
+    expect(req.status).toEqual(200);
+    expect(req.body.released).toEqual(1990);
   });
   afterAll(() => {
     pool.end();

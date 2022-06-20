@@ -35,6 +35,13 @@ describe('testing for /book route', () => {
     expect(req.status).toEqual(200);
     expect(req.body.released).toEqual(1990);
   });
+  it.skip('DELETE /books/:id should delete a book', async () => {
+    const req = await request(app).delete('/books/2');
+    expect(req.status).toEqual(200);
+
+    const { body } = await request(app).get('/books/2');
+    expect(body).toEqual('');
+  });
   afterAll(() => {
     pool.end();
   });

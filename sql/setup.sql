@@ -34,13 +34,14 @@ DROP TABLE if exists songs;
 
 CREATE TABLE songs (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    title VARCHAR NOT NULL
+    title VARCHAR NOT NULL,
+    minutes int not null
 );
 
-INSERT INTO songs (title) VALUES
-('The Art of Peer Pressure'), 
-('Backseat Freestyle'), 
-('Money Trees' ), 
-('Good Kid'), 
-('M.A.A.D City');
+INSERT INTO songs (title, minutes) VALUES
+('The Art of Peer Pressure',5), 
+('Backseat Freestyle',3), 
+('Money Trees', 6), 
+('Good Kid',3), 
+('M.A.A.D City',5);
 

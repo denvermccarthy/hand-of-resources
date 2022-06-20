@@ -10,4 +10,10 @@ describe('testing for /albums route', () => {
     const mrMorale = req.body.find((album) => album.id === '5');
     expect(mrMorale.title).toEqual('Mr. Morale & the Big Steppers');
   });
+  test('should send an object with the id matching the route', async () => {
+    const req = await request(app).get('/albums/1');
+    expect(req.status).toEqual(200);
+    expect(req.body.title).toEqual('Section.80');
+    expect(req.body.year_released).toEqual(2011);
+  });
 });

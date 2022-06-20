@@ -16,4 +16,11 @@ describe('testing for /albums route', () => {
     expect(req.body.title).toEqual('Section.80');
     expect(req.body.year_released).toEqual(2011);
   });
+  it('A PUT request to /albums/1 should update the object', async () => {
+    const req = await request(app)
+      .put('/albums/1')
+      .send({ year_released: 2012 });
+    expect(req.status).toEqual(200);
+    expect(req.body.year_released).toEqual(2012);
+  });
 });

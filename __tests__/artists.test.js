@@ -23,6 +23,18 @@ describe('testing for artists', () => {
     expect(birthYear).toEqual(1987);
     expect(name).toEqual('Kendrick Lamar');
   });
+  test('post to /artists should send the created artist', async () => {
+    const sent = {
+      name: 'Freddie Gibbs',
+      birthYear: 1993,
+    };
+    const {
+      body: { birthYear, name },
+    } = await request(app).post('/artists').send(sent);
+
+    expect(birthYear).toEqual(sent.birthYear);
+    expect(name).toEqual(sent.name);
+  });
 
   afterAll(() => {
     pool.end();

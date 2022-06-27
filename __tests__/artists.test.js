@@ -15,6 +15,14 @@ describe('testing for artists', () => {
     expect(kdot.birthYear).toEqual(1987);
     expect(res.body.length > 1).toEqual(true);
   });
+  test('/artists/id should send the correct artist', async () => {
+    const {
+      body: { birthYear, name },
+    } = await request(app).get('/artists/1');
+
+    expect(birthYear).toEqual(1987);
+    expect(name).toEqual('Kendrick Lamar');
+  });
 
   afterAll(() => {
     pool.end();

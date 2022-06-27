@@ -35,6 +35,13 @@ describe('testing for artists', () => {
     expect(birthYear).toEqual(sent.birthYear);
     expect(name).toEqual(sent.name);
   });
+  test('delete to /artists/id should delete the correct artist', async () => {
+    const { body } = await request(app).delete('/artists/1');
+    expect(body.message).toEqual('Successfully deleted');
+
+    const kdot = await request(app).get('/artists/1');
+    expect(kdot.body).toEqual(null);
+  });
 
   afterAll(() => {
     pool.end();

@@ -4,6 +4,9 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 describe('testing for /albums route', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
   test('should render a list of albums', async () => {
     const req = await request(app).get('/albums');
     expect(req.status).toEqual(200);
@@ -16,11 +19,23 @@ describe('testing for /albums route', () => {
     expect(req.body.title).toEqual('Section.80');
     expect(req.body.year_released).toEqual(2011);
   });
-  it('A PUT request to /albums/1 should update the object', async () => {
+  test('A PUT request to /albums/1 should update the object', async () => {
     const req = await request(app)
       .put('/albums/1')
       .send({ year_released: 2012 });
     expect(req.status).toEqual(200);
     expect(req.body.year_released).toEqual(2012);
+  });
+  test('A POST request to /albums should post the object', async () => {
+    const album = {
+      title: 'Midnight Marauders',
+      year_released: 1993,
+    };
+    const req = await request(app).post('/albums').send(album);
+    expect(req.body.title).toEqual(album.title);
+    expect(req.body.year_released).toEqual(album.year_released);
+  });
+  afterAll(() => {
+    pool.end();
   });
 });

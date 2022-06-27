@@ -21,7 +21,7 @@ describe('testing for /book route', () => {
     expect(req.body).toMatchObject(harryPotterObject);
     expect(req.body.id).toEqual('1');
   });
-  it.skip('A POST request to /books should post the object sent to the database and return the row', async () => {
+  it('A POST request to /books should post the object sent to the database and return the row', async () => {
     const sentBook = {
       title: 'Harry Potter and the Chamber of Secrets',
       released: 1998,

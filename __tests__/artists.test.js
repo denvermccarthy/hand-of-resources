@@ -42,6 +42,11 @@ describe('testing for artists', () => {
     const kdot = await request(app).get('/artists/1');
     expect(kdot.body).toEqual(null);
   });
+  test('put to /artists/id should update the correct artist', async () => {
+    const res = await request(app).put('/artists/1').send({ birthYear: 1900 });
+    expect(res.status).toEqual(200);
+    expect(res.body.birthYear).toEqual(1900);
+  });
 
   afterAll(() => {
     pool.end();

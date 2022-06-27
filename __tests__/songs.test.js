@@ -14,6 +14,12 @@ describe('testing for songs', () => {
     expect(mtrees.minutes).toEqual(6);
     expect(res.body.length > 1).toEqual(true);
   });
+  test('/songs/id should send the correct artist', async () => {
+    const res = await request(app).get('/songs/2');
+    expect(res.status).toEqual(200);
+    expect(res.body.title).toEqual('Backseat Freestyle');
+    expect(res.body.minutes).toEqual(3);
+  });
   afterAll(() => {
     pool.end();
   });

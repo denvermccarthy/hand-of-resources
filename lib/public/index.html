@@ -7,45 +7,18 @@
     <title>AnyAPI</title>
   </head>
   <body>
-    <header>
-      <h1>books Endpoints</h1>
-    </header>
     <main>
-      This API uses a list of books signs as its resource. The routes are as
-      follows:
-      <table>
-        <thead>
-          <tr>
-            <th>Route</th>
-            <th>Method</th>
-            <th>Description</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><pre>/books</pre></td>
-            <td>GET</td>
-            <td>Gets a list of books signs and ids</td>
-            <td>
-              <a href="/books" target="_blank">List books</a>
-            </td>
-          </tr>
-          <tr>
-            <td><pre>/books/:id</pre></td>
-            <td>GET</td>
-            <td>
-              Returns the detail about the books sign matching the id in the
-              parameter
-            </td>
-            <td>
-              <a href="/books/1" target="_blank" class="text-blue-700"
-                >Get books 1</a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <h1>Routes:</h1>
+      <h2>/books</h2>
+      <h2>/movies</h2>
+      <h2>/songs</h2>
+      <h2>/albums</h2>
+      <h2>/artists</h2>
     </main>
+    <h3>Convention:</h3>
+    <h4>Create: POST /thing</h4>
+    <h4>Read: GET /thing OR GET /thing/:id</h4>
+    <h4>Update: PUT /thing/:id</h4>
+    <h4>Delete: DELETE /thing/:id</h4>
   </body>
 </html>

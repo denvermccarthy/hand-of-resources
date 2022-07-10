@@ -38,6 +38,19 @@ describe('testing for songs', () => {
       ...movie,
     });
   });
+  test('put to /movies/id should update a movie', async () => {
+    const movie = { title: 'Happy Feet', rating: 99 };
+    const { body: newMovie } = await request(app).post('/movies').send(movie);
+    const resp = await request(app)
+      .put(`/movies/${newMovie.id}`)
+      .send({ rating: 999 });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      title: movie.title,
+      rating: 999,
+    });
+  });
   afterAll(() => {
     pool.end();
   });

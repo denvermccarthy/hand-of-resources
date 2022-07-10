@@ -28,6 +28,16 @@ describe('testing for songs', () => {
       rating: expect.any(Number),
     });
   });
+  test('post to /movies should add a movie', async () => {
+    const movie = { title: 'Happy Gilmore', rating: 100 };
+    const resp = await request(app).post('/movies').send(movie);
+    const { body: movieRes } = resp;
+    expect(resp.status).toBe(200);
+    expect(movieRes).toEqual({
+      id: expect.any(String),
+      ...movie,
+    });
+  });
   afterAll(() => {
     pool.end();
   });

@@ -51,6 +51,12 @@ describe('testing for songs', () => {
       rating: 999,
     });
   });
+  test('delete to /movies should delete a movie', async () => {
+    const movie = { title: 'Happy Gilmore', rating: 100 };
+    const { body: newMovie } = await request(app).post('/movies').send(movie);
+    const resp = await request(app).delete(`/movies/${newMovie.id}`);
+    expect(resp.status).toBe(200);
+  });
   afterAll(() => {
     pool.end();
   });

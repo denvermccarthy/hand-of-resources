@@ -45,3 +45,17 @@ INSERT INTO songs (title, minutes) VALUES
 ('Good Kid',3), 
 ('M.A.A.D City',5);
 
+DROP TABLE IF EXISTS movies;
+
+CREATE TABLE movies (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    rating INT NOT NULL
+);
+
+INSERT INTO movies (title, rating) VALUES
+('Top Gun: Maverick',97), 
+('Minions: The Rise of Gru',72), 
+('Beavis and Butt-Head Do the Universe',96), 
+('Everything Everywhere All at Once',95);
+ 

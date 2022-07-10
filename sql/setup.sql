@@ -59,3 +59,14 @@ INSERT INTO movies (title, rating) VALUES
 ('Beavis and Butt-Head Do the Universe',96), 
 ('Everything Everywhere All at Once',95);
  
+DROP TABLE IF EXISTS books;
+CREATE TABLE books (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    released INT NOT NULL
+);
+INSERT INTO books (title, released) VALUES
+('Harry Potter and the Philosophers Stone',1997), 
+('The Hobbit',1990), 
+('The Hitchhikers Guide to the Galaxy',1979), 
+('Goodnight Moon',1947);

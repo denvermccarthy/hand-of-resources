@@ -35,12 +35,14 @@ describe('testing for /book route', () => {
     expect(req.status).toEqual(200);
     expect(req.body.released).toEqual(1990);
   });
-  it.skip('DELETE /books/:id should delete a book', async () => {
-    const req = await request(app).delete('/books/2');
-    expect(req.status).toEqual(200);
-
-    const { body } = await request(app).get('/books/2');
-    expect(body).toEqual('');
+  it('DELETE /books/:id should delete a book', async () => {
+    const bookData = {
+      title: 'Pacific Crest Trail',
+      released: 1990,
+    };
+    const { body: book } = await request(app).post('/books').send(bookData);
+    const res = await request(app).delete(`/books/${book.id}`);
+    expect(res.status).toBe(200);
   });
   afterAll(() => {
     pool.end();

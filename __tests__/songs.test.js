@@ -48,6 +48,16 @@ describe('testing for songs', () => {
       minutes: 5,
     });
   });
+
+  test('A delete request to /songs/id should delete the song', async () => {
+    const songData = {
+      title: 'Gimme! Gimme! Gimme!',
+      minutes: 100,
+    };
+    const { body: song } = await request(app).post('/songs').send(songData);
+    const res = await request(app).delete(`/songs/${song.id}`);
+    expect(res.status).toBe(200);
+  });
   afterAll(() => {
     pool.end();
   });

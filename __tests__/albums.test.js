@@ -35,6 +35,15 @@ describe('testing for /albums route', () => {
     expect(req.body.title).toEqual(album.title);
     expect(req.body.year_released).toEqual(album.year_released);
   });
+  test('A delete request to /albums should delete the object', async () => {
+    const albumData = {
+      title: 'Midnight Marauders',
+      year_released: 1993,
+    };
+    const { body: album } = await request(app).post('/albums').send(albumData);
+    const res = await request(app).delete(`/albums/${album.id}`);
+    expect(res.status).toBe(200);
+  });
   afterAll(() => {
     pool.end();
   });

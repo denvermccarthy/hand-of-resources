@@ -32,6 +32,22 @@ describe('testing for songs', () => {
       id: expect.any(String),
     });
   });
+  test('PUT to /songs/id should update a song', async () => {
+    const songData = {
+      title: 'Gimme! Gimme! Gimme!',
+      minutes: 100,
+    };
+    const { body: post } = await request(app).post('/songs').send(songData);
+    const res = await request(app)
+      .put(`/songs/${post.id}`)
+      .send({ minutes: 5 });
+    expect(res.status).toEqual(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      title: 'Gimme! Gimme! Gimme!',
+      minutes: 5,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
